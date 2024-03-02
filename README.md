@@ -34,7 +34,7 @@ docker compose up -d
 ### docker
 
 ```shell
-docker run -d --user=root --name nodecook-agent -e NCA_API_KEY=your_api_key --restart=always --network=host ghcr.io/nodecook/agent/agent
+docker run -d --user=root --name nodecook-agent -e NCA_API_KEY=your_api_key --restart=always --network=host ghcr.io/nodecook/agent
 ```
 
 ## Configuration
