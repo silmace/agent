@@ -57,6 +57,14 @@ If set to `true`, the agent will print debug information. Default is `false`.
 
 Endpoint for agent to access, default is `http://your_server_ip:${NCA_PORT}`, if you are behind proxy, you should set this to your public address.
 
+### NCA_IPV4_ONLY
+
+If set to `true`, the agent will only use ipv4 to access the server. Default is `false`.
+
+### NCA_IPV6_ONLY
+
+If set to `true`, the agent will only use ipv6 to access the server. Default is `false`.
+
 ## Trubleshooting
 
 ### Why I can't see the agent in the dashboard?

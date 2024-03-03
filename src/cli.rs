@@ -14,6 +14,12 @@ pub struct Cli {
     /// IPv6 server address
     #[arg(short = '6', long, env = "NCA_IPV6_SERVER")]
     pub ipv6_server: Option<String>,
+    /// IPv4 only mode
+    #[arg(long, default_value_t = false, env = "NCA_IPV4_ONLY")]
+    pub ipv4_only: bool,
+    /// IPv6 only mode
+    #[arg(long, default_value_t = false, env = "NCA_IPV6_ONLY")]
+    pub ipv6_only: bool,
     /// Port to listen on
     #[arg(short, long, default_value_t = 4000, env = "NCA_PORT")]
     pub port: u16,
