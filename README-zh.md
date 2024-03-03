@@ -57,6 +57,14 @@ docker run -d --user=root --name nodecook-agent -e NCA_API_KEY=your_api_key --re
 
 代理访问的端点，默认为 `http://your_server_ip:${NCA_PORT}`，如果您运行在代理后面，您应该将其设置为您的公共地址。
 
+### NCA_IPV4_ONLY
+
+如果设置为 `true`，代理程序将只使用 ipv4 访问服务器，默认为 `false`。
+
+### NCA_IPV6_ONLY
+
+如果设置为 `true`，代理程序将只使用 ipv6 访问服务器，默认为 `false`。
+
 ## 故障排除
 
 ### 为什么我在仪表板中看不到代理？

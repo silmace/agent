@@ -26,8 +26,17 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
     let collector = fmt().with_max_level(level).finish();
     tracing::subscriber::set_global_default(collector)?;
-    let v4_ok = add_agent_with_args(args.clone(), "ipv4", true).await;
-    let v6_ok = add_agent_with_args(args.clone(), "ipv6", true).await;
+    if args.ipv4_only && args.ipv6_only {
+        panic!("ipv4_only and ipv6_only can't be true at the same time");
+    }
+    let mut v4_ok = false;
+    let mut v6_ok = false;
+    if !args.ipv4_only {
+        v6_ok = add_agent_with_args(args.clone(), "ipv6", true).await;
+    }
+    if !args.ipv6_only {
+        v4_ok = add_agent_with_args(args.clone(), "ipv4", true).await;
+    }
     if !v4_ok && !v6_ok {
         panic!("add ipv4 and ipv6 agent failed, please check your network or try again later");
     }
@@ -36,10 +45,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .add(Job::new_async("*/60 * * * * *", move |_uuid, _l| {
             let args = args.clone();
             Box::pin(async move {
-                if v4_ok {
+                if v4_ok && !args.ipv6_only {
                     add_agent_with_args(args.clone(), "ipv4", false).await;
                 }
-                if v6_ok {
+                if v6_ok && !args.ipv4_only {
                     add_agent_with_args(args, "ipv6", false).await;
                 }
             })
