@@ -98,4 +98,4 @@ jobs:
           docker manifest create ghcr.io/silmace/agent:latest --amend ghcr.io/silmace/agent:latest-amd64 --amend ghcr.io/silmace/agent:latest-arm64
           docker manifest push ghcr.io/silmace/agent:latest
 
-          ./regctl-linux-amd64 image copy ghcr.io/silmace/agent:latest silmace/agent:latest -v info
+          ./regctl-linux-amd64 image copy ghcr.io/silmace/agent:latest -v info
