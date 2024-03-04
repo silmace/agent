@@ -1,4 +1,4 @@
-FROM rust:1.72 AS chef
+FROM rust:1.74 AS chef
 USER root
 RUN apt-get update && apt-get install -y pkg-config libssl-dev
 RUN cargo install cargo-chef
