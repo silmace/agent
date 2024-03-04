@@ -17,6 +17,7 @@ RUN cargo build --release --target ${ARCH} --bin nodecook-agent
 
 FROM debian:buster-slim AS runtime
 ARG ARCH=aarch64-unknown-linux-gnu
+RUN apt-get update && apt-get install -y libssl-dev
 RUN addgroup --system nodecook && adduser --system --group nodecook
 COPY --from=builder /app/target/${ARCH}/release/nodecook-agent /usr/local/bin/
 USER nodecook
