@@ -37,7 +37,7 @@ jobs:
           platforms: linux/amd64
           tags: |
             ghcr.io/silmace/agent:latest-amd64
-            knatnetwork/silmace/agent:latest-amd64
+            silmace/agent:latest-amd64
           labels: ${{ steps.meta.outputs.labels }}
           
 
@@ -76,7 +76,7 @@ jobs:
           platforms: linux/arm64
           tags: |
             ghcr.io/silmace/agent:latest-arm64
-            knatnetwork/silmace/agent:latest-arm64
+            silmace/agent:latest-arm64
           labels: ${{ steps.meta.outputs.labels }}
 
   combine-two-images:
