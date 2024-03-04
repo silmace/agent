@@ -6,7 +6,7 @@ RUN cargo build --release --target aarch64-unknown-linux-gnu --bin nodecook-agen
 
 FROM alpine
 WORKDIR /
-RUN addgroup --system nodecook || echo "Failed to create group" && adduser --system --group nodecook || echo "Failed to create user"
+RUN addgroup -S nodecook && adduser -S nodecook -G nodecook
 COPY --from=builder /app/target/aarch64-unknown-linux-gnu/release/nodecook-agent /usr/local/bin/
 USER nodecook
 CMD ["/usr/local/bin/nodecook-agent"]
