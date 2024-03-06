@@ -68,11 +68,15 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Get regctl
         run: |
           wget -q https://github.com/regclient/regclient/releases/download/v0.4.5/regctl-linux-amd64
           chmod +x regctl-linux-amd64
+      - name: Remove existing manifests
+        run: |
+          docker manifest rm ghcr.io/${{ github.actor }}/agent:latest
+          docker manifest rm ghcr.io/${{ github.actor }}/agent:latest-amd64
+          docker manifest rm ghcr.io/${{ github.actor }}/agent:latest-arm64
 
       - name: Combine two images on GHCR
         run: |
